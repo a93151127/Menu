@@ -26,10 +26,6 @@ public class SuperResponse {
 		@JsonProperty("SESSION_ID")
 		String session_id;
 		
-		
-		@JsonProperty("DEVICE_TYPE")
-		String device_type;
-		
 		@JsonProperty("RETURN_MSG")
 		String return_msg;
 	}

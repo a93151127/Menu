@@ -1,8 +1,8 @@
 package com.martin.orderMenu.dao.log;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -29,10 +29,10 @@ public class Api_Log {
 	private String api_id;
 	
 	//請求時間
-	private String req_time;
+	private Timestamp req_time;
 	
 	//回復時間
-	private String res_time;
+	private Timestamp res_time;
 	
 	//回覆編碼
 	private String return_code;

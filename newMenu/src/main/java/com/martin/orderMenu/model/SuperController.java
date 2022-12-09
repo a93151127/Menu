@@ -13,7 +13,6 @@ public class SuperController {
 	protected SuperResponse.Header getResponseHeader(String return_code, 
 			String return_msg, String extInfo, SuperRequest.Header reqH){
 		SuperResponse.Header resH = new SuperResponse.Header();
-		resH.setDevice_type(reqH.getDevice_type()+"/res");
 		resH.setSession_id(reqH.getSession_id()+"/res");
 		
 		if(return_code.equals("M000")) {

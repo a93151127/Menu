@@ -25,11 +25,11 @@ public class SuperRequest{
 	@ToString
 	public static class Header{
 		
+		@JsonProperty("API_ID")
+		String api_id;
+		
 		@JsonProperty("SESSION_ID")
 		String session_id;
-		
-		@JsonProperty("DEVICE_TYPE")
-		String device_type;
 	}
 
 }

@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "api_data_log")
-public class Api__Data_Log {
+public class Api_Data_Log {
 	
 	//log id
 	@Id
