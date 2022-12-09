@@ -1,13 +1,13 @@
-package com.menu;
+package com.martin.orderMenu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MenuApplication {
+public class NewMenuApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MenuApplication.class, args);
+		SpringApplication.run(NewMenuApplication.class, args);
 	}
 
 }
