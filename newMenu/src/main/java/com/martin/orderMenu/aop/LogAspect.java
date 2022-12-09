@@ -4,7 +4,10 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.martin.orderMenu.service.log.LogService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class LogAspect {
+	
+	@Autowired
+	private LogService logService;
 	
 	/*
 	 * 設置切入點
@@ -32,6 +38,7 @@ public class LogAspect {
 		System.out.println("Start AOP Before");
 		String name = joinPoint.getSignature().getName();
 		log.info("requestMapping Name : {}", name);
+		log.info("seqNo : {}", logService.getSeqNo());
 	}
 	/*
 	 * 在log方法執行之前先進入下面這個方法
