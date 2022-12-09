@@ -22,14 +22,6 @@ public class MainResponse extends SuperResponse{
 	@JsonProperty("BODY")
 	SuperBody body = null;
 	
-	public final SuperBody getBody() {
-		return body;
-	}
-	
-	public final void setBody(SuperBody body) {
-		this.body = body;
-	}
-	
 	public MainResponse(Header header, SuperBody body) {
 		super(header);
 		this.body = body;

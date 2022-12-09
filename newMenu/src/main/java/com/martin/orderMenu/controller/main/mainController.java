@@ -10,32 +10,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.martin.orderMenu.model.SuperController;
 import com.martin.orderMenu.model.SuperRequest;
+import com.martin.orderMenu.model.SuperResponse;
 //import com.martin.orderMenu.model.SuperResponse;
 import com.martin.orderMenu.model.main.MainRequest;
+import com.martin.orderMenu.model.main.MainResponse;
 //import com.martin.orderMenu.model.main.MainResponse;
 
 @RestController
 @RequestMapping(value = "/main")
-//public class mainController extends SuperController{
-public class mainController{
-	
-//	@RequestMapping(value = "/firstApi", method = RequestMethod.POST)
-//	public MainResponse firstApi(@RequestBody MainRequest model, HttpServletRequest req,
-//			HttpServletResponse res) throws JsonProcessingException {
-//		SuperRequest.Header reqH = model.getHeader();
-//		SuperResponse.Header resH = this.getResponseHeader("M001",reqH);
-//		MainResponse.Body resB = new MainResponse.Body("beef rice");
-//		
-//		return new MainResponse(resH, resB);
-//	}
+public class mainController extends SuperController{
+//public class mainController{
 	
 	@RequestMapping(value = "/firstApi", method = RequestMethod.POST)
-	public MainRequest firstApi(@RequestBody MainRequest model, HttpServletRequest req,
+	public MainResponse firstApi(@RequestBody MainRequest model, HttpServletRequest req,
 			HttpServletResponse res) throws JsonProcessingException {
 		SuperRequest.Header reqH = model.getHeader();
-//		SuperResponse.Header resH = this.getResponseHeader("M001",reqH);
-//		MainResponse.Body resB = new MainResponse.Body("beef rice");
+		SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+		MainResponse.Body resB = new MainResponse.Body("beef rice");
 		
-		return model;
+		return new MainResponse(resH, resB);
 	}
+	
 }
