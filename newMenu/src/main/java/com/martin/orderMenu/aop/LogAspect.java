@@ -6,6 +6,7 @@ import com.martin.orderMenu.dao.log.LogHelper;
 import com.martin.orderMenu.jsonUtil.JsonUtil;
 import com.martin.orderMenu.model.SuperRequest;
 import com.martin.orderMenu.model.SuperResponse;
+import com.martin.orderMenu.service.Api_Data_Log_VO;
 import com.martin.orderMenu.service.Api_Log_VO;
 import com.martin.orderMenu.service.log.LogService;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,14 @@ public class LogAspect {
 	
 	@Autowired
 	private LogService logService;
+
+	@Autowired
+	private Api_Log_VO apiLogVo;
+
+	@Autowired
+	private Api_Data_Log_VO apiDataLogVo;
+
+
 	
 	/*
 	 * 設置切入點
@@ -50,6 +59,7 @@ public class LogAspect {
 		log.info("requestMapping Name : {}", name);
 		
 		String seq = logService.getSeqNo();
+		log.info("logService : {}", logService);
 		Object[] signatureArgs = joinPoint.getArgs();
 		String apiId = "";
 		String sessionId = "";
@@ -95,7 +105,8 @@ public class LogAspect {
 			apiLog.setReturn_msg("SUCCESSFUL");
 			apiLog.setRes_time(new Timestamp(new Date().getTime()));
 
-			LogHelper.insertApiLog(apiLog, LogHelper.getReqJson(), JsonUtil.objectToJson(result));
+			LogHelper.insertApiLog(apiLog, LogHelper.getReqJson(), JsonUtil.objectToJson(result),
+					apiLogVo, apiDataLogVo);
 		}
 		
 	}

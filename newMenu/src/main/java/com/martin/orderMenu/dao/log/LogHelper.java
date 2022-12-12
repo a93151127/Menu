@@ -7,9 +7,14 @@ import com.martin.orderMenu.service.Api_Log_VO;
 import com.martin.orderMenu.stringUtil.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
 public class LogHelper {
+
+
 	
 	//上行
 	public static final String TX_TYPE_UP = "1";
@@ -55,7 +60,8 @@ public class LogHelper {
 		LogApiVo.set(apiLog);
 	}
 	
-	public static void insertApiLog(Api_Log apiLog, String req, String res) {
+	public static void insertApiLog(Api_Log apiLog, String req, String res,
+									Api_Log_VO apiLogVo, Api_Data_Log_VO apiDataLogVo) {
 
 		try {
 			Api_Data_Log apiDataLog = new Api_Data_Log();
@@ -70,8 +76,11 @@ public class LogHelper {
 			
 			log.info(apiDataLog.toString());
 
-			Api_Data_Log_VO apiDataLogVo = new Api_Data_Log_VO();
-			Api_Log_VO apiLogVo = new Api_Log_VO();
+			log.info("inside logHelper apiLogVo: {}", apiLogVo);
+			log.info("inside logHelper apiDataLogVo: {}", apiDataLogVo);
+
+//			Api_Data_Log_VO apiDataLogVo = new Api_Data_Log_VO();
+//			Api_Log_VO apiLogVo = new Api_Log_VO();
 			apiDataLogVo.save(apiDataLog);
 			apiLogVo.save(apiLog);
 
