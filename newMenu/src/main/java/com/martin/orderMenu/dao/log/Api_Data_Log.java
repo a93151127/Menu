@@ -1,10 +1,10 @@
 package com.martin.orderMenu.dao.log;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import com.martin.orderMenu.dao.log.Api_Log;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@Configurable
 public class Api_Log_VO {
 	
 	@Autowired

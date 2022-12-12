@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c460e109-d8a3-4f40-8141-51fbcbbef5ca" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/newMenu/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/aop/LogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/aop/LogAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/controller/main/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/controller/main/mainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/dao/log/Api_Data_Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/dao/log/Api_Data_Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/repository/Api_Log_Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/repository/Api_Log_Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/service/Api_Log_VO.java" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/java/com/martin/orderMenu/service/Api_Log_VO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newMenu/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/newMenu/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2InBBtuOTiPcIO9Y4FHidAtgvqD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/workSpace/Menu/demo",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c460e109-d8a3-4f40-8141-51fbcbbef5ca" name="Changes" comment="" />
+      <created>1670807334711</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670807334711</updated>
+      <workItem from="1670807335833" duration="17000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

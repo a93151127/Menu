@@ -1,23 +1,25 @@
 package com.martin.orderMenu.aop;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.martin.orderMenu.dao.log.Api_Log;
+import com.martin.orderMenu.dao.log.LogHelper;
+import com.martin.orderMenu.jsonUtil.JsonUtil;
+import com.martin.orderMenu.model.SuperRequest;
+import com.martin.orderMenu.model.SuperResponse;
+import com.martin.orderMenu.service.Api_Log_VO;
+import com.martin.orderMenu.service.log.LogService;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.martin.orderMenu.dao.log.Api_Log;
-import com.martin.orderMenu.jsonUtil.JsonUtil;
-import com.martin.orderMenu.model.SuperRequest;
-import com.martin.orderMenu.service.Api_Log_VO;
-import com.martin.orderMenu.service.log.LogService;
-
-import lombok.extern.slf4j.Slf4j;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Aspect
 @Component
@@ -26,9 +28,6 @@ public class LogAspect {
 	
 	@Autowired
 	private LogService logService;
-	
-	@Autowired
-	private Api_Log_VO apiLogVo;
 	
 	/*
 	 * 設置切入點
@@ -52,6 +51,7 @@ public class LogAspect {
 		
 		String seq = logService.getSeqNo();
 		Object[] signatureArgs = joinPoint.getArgs();
+		String apiId = "";
 		String sessionId = "";
 		String reqJson = "";
 		
@@ -59,6 +59,7 @@ public class LogAspect {
 			if(c instanceof SuperRequest) {
 				SuperRequest sReq = (SuperRequest)c;
 				com.martin.orderMenu.model.SuperRequest.Header header = sReq.getHeader();
+				apiId = header.getApi_id();
 				sessionId = header.getSession_id();
 				reqJson = JsonUtil.objectToJson(sReq);
 			}
@@ -67,10 +68,36 @@ public class LogAspect {
 		Api_Log apiLog = new Api_Log();
 		apiLog.setLog_seqno(seq);
 		apiLog.setReq_time(new Timestamp(new Date().getTime()));
-		apiLog.setApi_id(name);
+		apiLog.setApi_id(apiId);
 		apiLog.setSession_id(sessionId);
 		
-		apiLogVo.save(apiLog);
+		LogHelper.setLogapivo(apiLog);
+		LogHelper.setReqJson(reqJson);
+	}
+	@AfterReturning(
+			pointcut = "within(@org.springframework.web.bind.annotation.RequestMapping *)",
+			returning = "result")
+	public void afterRequestMapping(JoinPoint jp, Object result) throws JsonProcessingException{
+		String name = jp.getSignature().getName();
+		log.info("afterRequestMapping name : {}", name);
+		if(!StringUtils.isEmpty(name)) {
+
+			Api_Log apiLog = LogHelper.getLogapivo();
+
+			SuperResponse res = (SuperResponse) result;
+			if(StringUtils.isEmpty(res.getHeader().getSession_id())) {
+				apiLog.setSession_id(" ");
+			}else {
+				apiLog.setSession_id(res.getHeader().getSession_id());
+			}
+
+			apiLog.setReturn_code("M000");
+			apiLog.setReturn_msg("SUCCESSFUL");
+			apiLog.setRes_time(new Timestamp(new Date().getTime()));
+
+			LogHelper.insertApiLog(apiLog, LogHelper.getReqJson(), JsonUtil.objectToJson(result));
+		}
+		
 	}
 	/*
 	 * 在log方法執行之前先進入下面這個方法
