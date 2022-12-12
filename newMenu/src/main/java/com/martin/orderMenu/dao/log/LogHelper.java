@@ -76,11 +76,6 @@ public class LogHelper {
 			
 			log.info(apiDataLog.toString());
 
-			log.info("inside logHelper apiLogVo: {}", apiLogVo);
-			log.info("inside logHelper apiDataLogVo: {}", apiDataLogVo);
-
-//			Api_Data_Log_VO apiDataLogVo = new Api_Data_Log_VO();
-//			Api_Log_VO apiLogVo = new Api_Log_VO();
 			apiDataLogVo.save(apiDataLog);
 			apiLogVo.save(apiLog);
 

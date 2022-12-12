@@ -19,7 +19,6 @@ public class StringUtils {
 		int strLen = str.length();
 		int pads = size - strLen;
 		if(pads <= 0) {
-			log.info("111");
 			return str;
 		}
 		if(padLen == 1 && pads <= PAD_LIMIT) {

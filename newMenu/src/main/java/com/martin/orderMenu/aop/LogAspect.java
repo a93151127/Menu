@@ -56,10 +56,8 @@ public class LogAspect {
 	public void requestMapping(JoinPoint joinPoint) throws JsonProcessingException {
 		System.out.println("Start AOP Before");
 		String name = joinPoint.getSignature().getName();
-		log.info("requestMapping Name : {}", name);
 		
 		String seq = logService.getSeqNo();
-		log.info("logService : {}", logService);
 		Object[] signatureArgs = joinPoint.getArgs();
 		String apiId = "";
 		String sessionId = "";
@@ -110,19 +108,4 @@ public class LogAspect {
 		}
 		
 	}
-	/*
-	 * 在log方法執行之前先進入下面這個方法
-	 * 這裡也可以寫成
-	 * @Before("execution(* com.martin.controller.LogTestApi.log(..))")
-	 */
-//	@After("log()")
-//    public void doAfter() {
-//        log.info("2=========");
-//    }
-
-
-//    @AfterReturning(returning = "result",pointcut = "log()")
-//    public void doAtfertRturning(Object result) {
-//        log.info("3=========");
-//    }
 }
