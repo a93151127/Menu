@@ -18,13 +18,12 @@ public class SessionFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         log.info("SessionFilter start");
         long startTime = System.currentTimeMillis();
-
         HttpServletRequest httpReq = (HttpServletRequest) request;
 
         filterChain.doFilter(request, response);
 
         long endTime = System.currentTimeMillis();
-        log.info("SessionFilter start");
+        log.info("SessionFilter end");
     }
 
     @Override
