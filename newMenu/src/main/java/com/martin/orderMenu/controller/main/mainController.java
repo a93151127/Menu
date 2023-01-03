@@ -4,10 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.martin.orderMenu.exception.OPException;
+import com.martin.orderMenu.model.login.LoginRequest;
+import com.martin.orderMenu.model.login.LoginResponse;
 import com.martin.orderMenu.model.user.UserDetailRequest;
 import com.martin.orderMenu.model.user.UserDetailResponse;
 import com.martin.orderMenu.model.user.UserRankRequest;
 import com.martin.orderMenu.model.user.UserRankResponse;
+import com.martin.orderMenu.service.login.LoginService;
 import com.martin.orderMenu.service.userDetail.UserDetailService;
 import com.martin.orderMenu.service.userRank.UserRankService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +38,9 @@ public class mainController extends SuperController{
 
 	@Autowired
 	private UserDetailService userDetailService;
+
+	@Autowired
+	private LoginService loginService;
 	
 	@RequestMapping(value = "/firstApi", method = RequestMethod.POST)
 	public MainResponse firstApi(@RequestBody MainRequest model, HttpServletRequest req,
@@ -89,6 +95,23 @@ public class mainController extends SuperController{
 		} catch (OPException op){
 			log.info("createUserDetail opException code : {}", op.toString());
 			throw op;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public LoginResponse login(@RequestBody LoginRequest model, HttpServletRequest req,
+										  HttpServletResponse res) throws JsonProcessingException, OPException {
+
+		SuperRequest.Header reqH = model.getHeader();
+		try {
+			loginService.insertUserRank(model.getBody(), reqH);
+
+			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
+
+			return new LoginResponse(resH, resB);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

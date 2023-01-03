@@ -1,8 +1,9 @@
-package com.martin.orderMenu.model.user;
+package com.martin.orderMenu.model.login;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.martin.orderMenu.model.SuperRequest;
+import com.martin.orderMenu.model.user.UserDetailRequest;
 import lombok.*;
 
 @JsonRootName(value = "REQUEST")
@@ -11,10 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserDetailRequest  extends SuperRequest {
+public class LoginRequest extends SuperRequest {
 
     @JsonProperty("BODY")
-    UserDetailRequest.Body body = null;
+    LoginRequest.Body body = null;
 
     @Getter
     @Setter
@@ -27,16 +28,5 @@ public class UserDetailRequest  extends SuperRequest {
         @JsonProperty("USER_PD")
         private String user_pd;
 
-        @JsonProperty("USER_GENDER")
-        private String user_gender;
-
-        @JsonProperty("USER_NAME")
-        private String user_name;
-
-        @JsonProperty("USER_PHONE")
-        private String user_phone;
-
-        @JsonProperty("USER_RANK_ID")
-        private String user_rank_id;
     }
 }

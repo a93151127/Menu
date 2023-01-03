@@ -18,6 +18,9 @@ public class User_Detail {
     private String user_id;
 
     //請求request
+    private String user_pd;
+
+    //請求request
     private String user_name;
 
     //回復response

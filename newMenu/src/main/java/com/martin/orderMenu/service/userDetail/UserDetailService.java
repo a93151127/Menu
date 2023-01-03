@@ -29,6 +29,7 @@ public class UserDetailService {
         userDetail.setUser_gender(mBody.getUser_gender());
         userDetail.setUser_name(mBody.getUser_name());
         userDetail.setUser_phone(mBody.getUser_phone());
+        userDetail.setUser_pd(mBody.getUser_pd());
         userDetail.setUserRank(userRankVo.findById(mBody.getUser_rank_id()));
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
