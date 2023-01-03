@@ -1,5 +1,6 @@
 package com.martin.orderMenu.model;
 
+import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.SuperRequest;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +14,7 @@ public class SuperController {
 		if(!req.getSession().getId().equals(sessionId)){
 			log.info("Input SESSION_ID {} != Http Session Id {} !",
 					sessionId, req.getSession().getId());
-			throw new Exception("session 錯誤");
+			throw new OPException("M123", "session 錯誤", "aaa");
 		}
 	}
 	

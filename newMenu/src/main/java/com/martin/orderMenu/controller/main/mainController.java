@@ -3,6 +3,7 @@ package com.martin.orderMenu.controller.main;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.user.UserDetailRequest;
 import com.martin.orderMenu.model.user.UserDetailResponse;
 import com.martin.orderMenu.model.user.UserRankRequest;
@@ -73,7 +74,7 @@ public class mainController extends SuperController{
 
 	@RequestMapping(value = "/createUserDetail", method = RequestMethod.POST)
 	public UserDetailResponse createUserDetail(@RequestBody UserDetailRequest model, HttpServletRequest req,
-											   HttpServletResponse res) throws JsonProcessingException {
+											   HttpServletResponse res) throws JsonProcessingException, OPException {
 
 		SuperRequest.Header reqH = model.getHeader();
 		log.info("req.getSession : {}", req.getSession().getId());
@@ -85,6 +86,9 @@ public class mainController extends SuperController{
 			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
 
 			return new UserDetailResponse(resH, resB);
+		} catch (OPException op){
+			log.info("createUserDetail opException code : {}", op.toString());
+			throw op;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
