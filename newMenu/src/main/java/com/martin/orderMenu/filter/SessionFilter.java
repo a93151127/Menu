@@ -1,11 +1,13 @@
 package com.martin.orderMenu.filter;
 
+import com.martin.orderMenu.requestWrapper.BodyReaderHttpServletRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -17,12 +19,14 @@ public class SessionFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         log.info("SessionFilter start");
-        long startTime = System.currentTimeMillis();
         HttpServletRequest httpReq = (HttpServletRequest) request;
+        BodyReaderHttpServletRequestWrapper httpServletRequestWrapper = new BodyReaderHttpServletRequestWrapper(httpReq);
+        String body = httpServletRequestWrapper.getReader().lines().collect(Collectors.joining());
 
-        filterChain.doFilter(request, response);
+        log.info("body : {} ", body);
 
-        long endTime = System.currentTimeMillis();
+        filterChain.doFilter(httpServletRequestWrapper, response);
+
         log.info("SessionFilter end");
     }
 

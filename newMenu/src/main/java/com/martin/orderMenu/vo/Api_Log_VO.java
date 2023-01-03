@@ -1,15 +1,11 @@
-package com.martin.orderMenu.service;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+package com.martin.orderMenu.vo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import com.martin.orderMenu.dao.log.Api_Log;
-import com.martin.orderMenu.repository.Api_Log_Repository;
+import com.martin.orderMenu.repository.log.Api_Log_Repository;
 
 import lombok.extern.slf4j.Slf4j;
 

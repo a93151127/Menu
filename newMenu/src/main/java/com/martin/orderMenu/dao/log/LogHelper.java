@@ -2,12 +2,10 @@ package com.martin.orderMenu.dao.log;
 
 import java.util.Calendar;
 
-import com.martin.orderMenu.service.Api_Data_Log_VO;
-import com.martin.orderMenu.service.Api_Log_VO;
-import com.martin.orderMenu.stringUtil.StringUtils;
+import com.martin.orderMenu.vo.Api_Data_Log_VO;
+import com.martin.orderMenu.vo.Api_Log_VO;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -67,8 +65,7 @@ public class LogHelper {
 			Api_Data_Log apiDataLog = new Api_Data_Log();
 			
 			Calendar cal = Calendar.getInstance();
-			String partKey = StringUtils
-					.leftPad(String.valueOf(cal.get(Calendar.MONTH)), 2, "0");
+			String partKey = String.valueOf(cal.get(Calendar.MONTH)+1);
 			apiDataLog.setLog_seqno(apiLog.getLog_seqno());
 			apiDataLog.setPart_key(partKey);
 			apiDataLog.setReq_json(req);

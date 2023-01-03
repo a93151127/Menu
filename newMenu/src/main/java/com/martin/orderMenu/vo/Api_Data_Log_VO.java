@@ -1,13 +1,11 @@
-package com.martin.orderMenu.service;
+package com.martin.orderMenu.vo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.martin.orderMenu.dao.log.Api_Data_Log;
-import com.martin.orderMenu.dao.log.Api_Log;
-import com.martin.orderMenu.repository.Api_Data_Log_Repository;
-import com.martin.orderMenu.repository.Api_Log_Repository;
+import com.martin.orderMenu.repository.log.Api_Data_Log_Repository;
 
 import lombok.extern.slf4j.Slf4j;
 

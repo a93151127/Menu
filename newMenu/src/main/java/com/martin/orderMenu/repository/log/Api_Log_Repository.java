@@ -1,4 +1,4 @@
-package com.martin.orderMenu.repository;
+package com.martin.orderMenu.repository.log;
 
 import java.util.Collection;
 
