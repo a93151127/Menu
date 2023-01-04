@@ -4,9 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.martin.orderMenu.dateUtil.DateUtil;
+import com.martin.orderMenu.util.DateUtil;
 import com.martin.orderMenu.vo.Api_Log_VO;
-import com.martin.orderMenu.stringUtil.StringUtils;
+import com.martin.orderMenu.util.StringUtils;
 
 @Service
 @Slf4j

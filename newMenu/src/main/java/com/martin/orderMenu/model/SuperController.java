@@ -2,18 +2,23 @@ package com.martin.orderMenu.model;
 
 import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.SuperRequest;
+import com.martin.orderMenu.vo.session.Session_VO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 //import com.martin.orderMenu.model.SuperResponse;
 @Slf4j
 public class SuperController {
 
+	@Autowired
+	private Session_VO sessionVo;
+
 	protected void checkSessionId(SuperRequest model, HttpServletRequest req) throws Exception{
 		String sessionId = model.getHeader().getSession_id();
-		if(!req.getSession().getId().equals(sessionId)){
-			log.info("Input SESSION_ID {} != Http Session Id {} !",
-					sessionId, req.getSession().getId());
+
+		if(sessionVo.findById(sessionId) == null){
+			log.info("Input SESSION_ID {} null", sessionId);
 			throw new OPException("M123", "session 錯誤", "aaa");
 		}
 	}

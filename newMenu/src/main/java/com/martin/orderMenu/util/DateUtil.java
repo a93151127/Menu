@@ -1,5 +1,6 @@
-package com.martin.orderMenu.dateUtil;
+package com.martin.orderMenu.util;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,5 +22,11 @@ public class DateUtil {
 			sdfLocal.set(new SimpleDateFormat());
 		}
 		return sdfLocal.get();
+	}
+
+	public static Timestamp qryNowTimeStamp() {
+		Long datetime = System.currentTimeMillis();
+		Timestamp timestamp = new Timestamp(datetime);
+		return timestamp;
 	}
 }

@@ -1,4 +1,4 @@
-package com.martin.orderMenu.jsonUtil;
+package com.martin.orderMenu.util;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

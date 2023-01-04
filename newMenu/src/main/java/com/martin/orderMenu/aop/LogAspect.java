@@ -3,7 +3,8 @@ package com.martin.orderMenu.aop;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.martin.orderMenu.dao.log.Api_Log;
 import com.martin.orderMenu.dao.log.LogHelper;
-import com.martin.orderMenu.jsonUtil.JsonUtil;
+import com.martin.orderMenu.util.DateUtil;
+import com.martin.orderMenu.util.JsonUtil;
 import com.martin.orderMenu.model.SuperRequest;
 import com.martin.orderMenu.model.SuperResponse;
 import com.martin.orderMenu.vo.Api_Data_Log_VO;
@@ -75,7 +76,7 @@ public class LogAspect {
 		
 		Api_Log apiLog = new Api_Log();
 		apiLog.setLog_seqno(seq);
-		apiLog.setReq_time(new Timestamp(new Date().getTime()));
+		apiLog.setReq_time(DateUtil.qryNowTimeStamp());
 		apiLog.setApi_id(apiId);
 		apiLog.setSession_id(sessionId);
 		
@@ -101,7 +102,7 @@ public class LogAspect {
 
 			apiLog.setReturn_code("M000");
 			apiLog.setReturn_msg("SUCCESSFUL");
-			apiLog.setRes_time(new Timestamp(new Date().getTime()));
+			apiLog.setRes_time(DateUtil.qryNowTimeStamp());
 
 			LogHelper.insertApiLog(apiLog, LogHelper.getReqJson(), JsonUtil.objectToJson(result),
 					apiLogVo, apiDataLogVo);

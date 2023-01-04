@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.martin.orderMenu.exception.OPException;
+import com.martin.orderMenu.model.login.LogOutRequest;
+import com.martin.orderMenu.model.login.LogOutResponse;
 import com.martin.orderMenu.model.login.LoginRequest;
 import com.martin.orderMenu.model.login.LoginResponse;
 import com.martin.orderMenu.model.user.UserDetailRequest;
@@ -89,7 +91,7 @@ public class mainController extends SuperController{
 			userDetailService.insertUserDetail(model.getBody(), reqH);
 
 			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
-			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
+			UserDetailResponse.Body resB = new UserDetailResponse.Body("成功");
 
 			return new UserDetailResponse(resH, resB);
 		} catch (OPException op){
@@ -106,12 +108,29 @@ public class mainController extends SuperController{
 
 		SuperRequest.Header reqH = model.getHeader();
 		try {
-			loginService.insertUserRank(model.getBody(), reqH);
+			loginService.login(model.getBody(), reqH, req);
 
 			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
-			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
+			LoginResponse.Body resB = new LoginResponse.Body("成功");
 
 			return new LoginResponse(resH, resB);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public LogOutResponse logout(@RequestBody LogOutRequest model, HttpServletRequest req,
+								HttpServletResponse res) throws JsonProcessingException, OPException {
+
+		SuperRequest.Header reqH = model.getHeader();
+		try {
+			this.checkSessionId(model, req);
+			loginService.logout(model.getBody(), reqH, req);
+
+			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			LogOutResponse.Body resB = new LogOutResponse.Body("登出成功");
+
+			return new LogOutResponse(resH, resB);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
