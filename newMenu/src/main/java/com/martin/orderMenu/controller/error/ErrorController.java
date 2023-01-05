@@ -1,6 +1,7 @@
 package com.martin.orderMenu.controller.error;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.martin.orderMenu.codeNo.Const;
 import com.martin.orderMenu.dao.log.Api_Log;
 import com.martin.orderMenu.dao.log.LogHelper;
 import com.martin.orderMenu.exception.OPException;
@@ -71,7 +72,7 @@ public class ErrorController extends SuperController {
                 }else{
                     vo.setSession_id(superResponse.getHeader().getSession_id());
                 }
-                vo.setReturn_code("M9999");
+                vo.setReturn_code(Const.FAIL);
                 vo.setReturn_msg(superResponse.getHeader().getReturn_msg());
 
                 LogHelper.insertApiLog(vo, LogHelper.getReqJson(), JsonUtil.objectToJson(superResponse),

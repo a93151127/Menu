@@ -1,6 +1,7 @@
 package com.martin.orderMenu.aop;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.martin.orderMenu.codeNo.Const;
 import com.martin.orderMenu.dao.log.Api_Log;
 import com.martin.orderMenu.dao.log.LogHelper;
 import com.martin.orderMenu.exception.OPException;
@@ -66,7 +67,7 @@ public class LogAspect {
 					apiLog.setSession_id(res.getHeader().getSession_id());
 				}
 
-				apiLog.setReturn_code("M999");
+				apiLog.setReturn_code(res.getHeader().getReturn_code());
 				apiLog.setReturn_msg("FAIL");
 
 				apiLog.setRes_time(DateUtil.qryNowTimeStamp());
@@ -138,7 +139,7 @@ public class LogAspect {
 					apiLog.setSession_id(res.getHeader().getSession_id());
 				}
 
-				apiLog.setReturn_code("M000");
+				apiLog.setReturn_code(Const.SUCCESS);
 				apiLog.setReturn_msg("SUCCESSFUL");
 
 				apiLog.setRes_time(DateUtil.qryNowTimeStamp());

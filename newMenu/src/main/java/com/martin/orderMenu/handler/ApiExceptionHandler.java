@@ -1,6 +1,7 @@
 package com.martin.orderMenu.handler;
 
 
+import com.martin.orderMenu.codeNo.Const;
 import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.SuperResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ public class ApiExceptionHandler {
         SuperResponse.Header resH = new SuperResponse.Header();
         resH.setSession_id("");
         resH.setReturn_msg(e.getOpMsg());
+        resH.setReturn_code(e.getOpCode());
         res.setHeader(resH);
 
         e.printStackTrace();
@@ -48,6 +50,7 @@ public class ApiExceptionHandler {
         SuperResponse.Header resH = new SuperResponse.Header();
         resH.setSession_id("");
         resH.setReturn_msg(e.getMessage());
+        resH.setReturn_code(Const.FAIL);
         res.setHeader(resH);
 
         e.printStackTrace();

@@ -3,6 +3,7 @@ package com.martin.orderMenu.controller.main;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.martin.orderMenu.codeNo.Const;
 import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.login.LogOutRequest;
 import com.martin.orderMenu.model.login.LogOutResponse;
@@ -52,7 +53,7 @@ public class mainController extends SuperController{
 		log.info("req.getSession : {}", req.getSession().getId());
 		try {
 			this.checkSessionId(model, req);
-			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			SuperResponse.Header resH = this.getResponseHeader(Const.SUCCESS,reqH);
 			MainResponse.Body resB = new MainResponse.Body("beef rice");
 
 			return new MainResponse(resH, resB);
@@ -75,7 +76,7 @@ public class mainController extends SuperController{
 			this.checkSessionId(model, req);
 			userRankService.insertUserRank(model.getBody(), reqH);
 
-			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			SuperResponse.Header resH = this.getResponseHeader(Const.SUCCESS,reqH);
 			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
 
 			return new UserRankResponse(resH, resB);
@@ -97,7 +98,7 @@ public class mainController extends SuperController{
 			this.checkSessionId(model, req);
 			userDetailService.insertUserDetail(model.getBody(), reqH);
 
-			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			SuperResponse.Header resH = this.getResponseHeader(Const.SUCCESS,reqH);
 			UserDetailResponse.Body resB = new UserDetailResponse.Body("成功");
 
 			return new UserDetailResponse(resH, resB);
@@ -117,7 +118,7 @@ public class mainController extends SuperController{
 		try {
 			loginService.login(model.getBody(), reqH, req);
 
-			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			SuperResponse.Header resH = this.getResponseHeader(Const.SUCCESS,reqH);
 			LoginResponse.Body resB = new LoginResponse.Body("成功");
 
 			return new LoginResponse(resH, resB);
@@ -137,7 +138,7 @@ public class mainController extends SuperController{
 			this.checkSessionId(model, req);
 			loginService.logout(model.getBody(), reqH, req);
 
-			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			SuperResponse.Header resH = this.getResponseHeader(Const.SUCCESS,reqH);
 			LogOutResponse.Body resB = new LogOutResponse.Body("登出成功");
 
 			return new LogOutResponse(resH, resB);

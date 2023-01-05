@@ -1,5 +1,6 @@
 package com.martin.orderMenu.model;
 
+import com.martin.orderMenu.codeNo.Const;
 import com.martin.orderMenu.exception.OPException;
 import com.martin.orderMenu.model.SuperRequest;
 import com.martin.orderMenu.vo.session.Session_VO;
@@ -19,7 +20,7 @@ public class SuperController {
 
 		if(sessionVo.findById(sessionId) == null){
 			log.info("Input SESSION_ID {} null", sessionId);
-			throw new OPException("M123", "session 錯誤", "aaa");
+			throw new OPException(Const.SESSION_WRONG, "session 錯誤", "aaa");
 		}
 	}
 	
@@ -33,7 +34,8 @@ public class SuperController {
 		SuperResponse.Header resH = new SuperResponse.Header();
 		resH.setSession_id(reqH.getSession_id()+"/res");
 		
-		if(return_code.equals("M000")) {
+		if(return_code.equals(Const.SUCCESS)) {
+			resH.setReturn_code(Const.SUCCESS);
 			resH.setReturn_msg("SUCESSFUL");
 		}else {
 			resH.setReturn_msg("FALSE");
