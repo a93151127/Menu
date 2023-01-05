@@ -14,7 +14,7 @@ public class SuperController {
 	@Autowired
 	private Session_VO sessionVo;
 
-	protected void checkSessionId(SuperRequest model, HttpServletRequest req) throws Exception{
+	protected void checkSessionId(SuperRequest model, HttpServletRequest req) throws OPException{
 		String sessionId = model.getHeader().getSession_id();
 
 		if(sessionVo.findById(sessionId) == null){

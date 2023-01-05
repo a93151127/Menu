@@ -46,24 +46,28 @@ public class mainController extends SuperController{
 	
 	@RequestMapping(value = "/firstApi", method = RequestMethod.POST)
 	public MainResponse firstApi(@RequestBody MainRequest model, HttpServletRequest req,
-								 HttpServletResponse res) throws JsonProcessingException {
+								 HttpServletResponse res) throws JsonProcessingException, OPException {
 		SuperRequest.Header reqH = model.getHeader();
 		String sessionId = req.getSession().getId();
 		log.info("req.getSession : {}", req.getSession().getId());
 		try {
 			this.checkSessionId(model, req);
+			SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
+			MainResponse.Body resB = new MainResponse.Body("beef rice");
+
+			return new MainResponse(resH, resB);
+		} catch(OPException op){
+			log.info("firstApi exception ({})", op.getOpMsg());
+			throw op;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		SuperResponse.Header resH = this.getResponseHeader("M000",reqH);
-		MainResponse.Body resB = new MainResponse.Body("beef rice");
 
-		return new MainResponse(resH, resB);
 	}
 
 	@RequestMapping(value = "/createUserRank", method = RequestMethod.POST)
 	public UserRankResponse createUserRank(@RequestBody UserRankRequest model, HttpServletRequest req,
-										   HttpServletResponse res) throws JsonProcessingException {
+										   HttpServletResponse res) throws JsonProcessingException, OPException {
 
 		SuperRequest.Header reqH = model.getHeader();
 		log.info("req.getSession : {}", req.getSession().getId());
@@ -75,6 +79,9 @@ public class mainController extends SuperController{
 			UserRankResponse.Body resB = new UserRankResponse.Body("成功");
 
 			return new UserRankResponse(resH, resB);
+		} catch(OPException op){
+			log.info("createUserRank exception ({})", op.getOpMsg());
+			throw op;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -114,6 +121,9 @@ public class mainController extends SuperController{
 			LoginResponse.Body resB = new LoginResponse.Body("成功");
 
 			return new LoginResponse(resH, resB);
+		} catch(OPException op){
+			log.info("login exception ({})", op.getOpMsg());
+			throw op;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -131,6 +141,9 @@ public class mainController extends SuperController{
 			LogOutResponse.Body resB = new LogOutResponse.Body("登出成功");
 
 			return new LogOutResponse(resH, resB);
+		} catch(OPException op){
+			log.info("logout exception ({})", op.getOpMsg());
+			throw op;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

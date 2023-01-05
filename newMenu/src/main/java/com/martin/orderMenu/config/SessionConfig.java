@@ -13,7 +13,11 @@ public class SessionConfig  extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        /*
+        使用此方法會呼叫interceptor兩次
         registry.addInterceptor(sessionInterceptor);
+         */
+        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/main/*");
     }
 
 }

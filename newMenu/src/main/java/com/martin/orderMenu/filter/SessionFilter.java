@@ -18,16 +18,18 @@ public class SessionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        log.info("SessionFilter start");
         HttpServletRequest httpReq = (HttpServletRequest) request;
-        BodyReaderHttpServletRequestWrapper httpServletRequestWrapper = new BodyReaderHttpServletRequestWrapper(httpReq);
-        String body = httpServletRequestWrapper.getReader().lines().collect(Collectors.joining());
+            log.info("SessionFilter start");
 
-        log.info("body : {} ", body);
+            BodyReaderHttpServletRequestWrapper httpServletRequestWrapper = new BodyReaderHttpServletRequestWrapper(httpReq);
+            String body = httpServletRequestWrapper.getReader().lines().collect(Collectors.joining());
 
-        filterChain.doFilter(httpServletRequestWrapper, response);
+            log.info("body : {} ", body);
 
-        log.info("SessionFilter end");
+            filterChain.doFilter(httpServletRequestWrapper, response);
+
+            log.info("SessionFilter end");
+
     }
 
     @Override

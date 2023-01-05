@@ -20,18 +20,28 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("preHandle start");
+        log.info("httpReq.getRequestURI(): {}", request.getRequestURI());
+        if(!request.getRequestURI().contains("error")){
+            log.info("preHandle start");
 
-        HttpSession session = request.getSession();
-        log.info("SI preHandle servlet id : {}", session.getId());
+            try{
+                HttpSession session = request.getSession();
+                log.info("SI preHandle servlet id : {}", session.getId());
 
-        Header header = getEntry(request);
+                Header header = getEntry(request);
 
-        if(header == null){
-            throw new Exception("沒有Header");
+                if(header == null){
+                    throw new Exception("沒有Header");
+                }
+                log.info("SI preHandle Header id : {}", header.getSession_id());
+            }catch(Exception e){
+                log.info("sessionInterceptor error: {}", e);
+                request.setAttribute("Exception", e);
+                request.getRequestDispatcher("/error/error00").forward(request, response);
+                return false;
+            }
+            return true;
         }
-        log.info("SI preHandle Header id : {}", header.getSession_id());
-
         return true;
     }
 
@@ -61,7 +71,5 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
        }
 
        return superReq.getHeader();
-
-
     }
 }

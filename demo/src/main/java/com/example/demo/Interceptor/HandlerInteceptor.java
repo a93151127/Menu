@@ -34,6 +34,8 @@ public class HandlerInteceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object arg2) throws Exception {
+        log.info("httpReq.getRequestURI(): {}", request.getRequestURI());
+
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletRequestWrapper httpServletRequestWrapper = new HttpServletRequestWrapper(httpServletRequest);
         String body = httpServletRequestWrapper.getReader().lines().collect(Collectors.joining());
@@ -41,6 +43,8 @@ public class HandlerInteceptor extends HandlerInterceptorAdapter {
 
         log.info("inside interceptor body : {}", body);
         log.info("inside interceptor bodyrequest : {}", bodyrequest);
+
+
 
         return true;
     }
