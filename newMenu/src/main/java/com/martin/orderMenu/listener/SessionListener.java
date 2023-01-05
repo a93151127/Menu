@@ -18,28 +18,28 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
     public void sessionCreated(HttpSessionEvent se) {
         // TODO Auto-generated method stub
         HttpSessionListener.super.sessionCreated(se);
-        System.out.println("HttpSessionListener: Session Created");
+        log.info("HttpSessionListener: Session Created");
     }
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {
         // TODO Auto-generated method stub
         HttpSessionAttributeListener.super.attributeAdded(se);
-        System.out.println("HttpSessionAttributeListener: Session Attribute Added");
+        log.info("HttpSessionAttributeListener: Session Attribute Added");
     }
 
     @Override
     public void attributeRemoved(HttpSessionBindingEvent se) {
         // TODO Auto-generated method stub
         HttpSessionAttributeListener.super.attributeRemoved(se);
-        System.out.println("HttpSessionAttributeListener: Session Attribute Removed");
+        log.info("HttpSessionAttributeListener: Session Attribute Removed");
     }
 
     @Override
     public void attributeReplaced(HttpSessionBindingEvent se) {
         // TODO Auto-generated method stub
         HttpSessionAttributeListener.super.attributeReplaced(se);
-        System.out.println("HttpSessionAttributeListener: Session Attribute Replaced");
+        log.info("HttpSessionAttributeListener: Session Attribute Replaced");
     }
 
     @Override

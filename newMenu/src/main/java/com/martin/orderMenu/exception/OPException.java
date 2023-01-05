@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class OPException extends Exception{
+public class OPException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
     private String opCode;

@@ -32,7 +32,6 @@ public class TestFilter implements Filter {
 
 
 
-        long endTime = System.currentTimeMillis();
         log.info("SessionFilter end");
     }
 

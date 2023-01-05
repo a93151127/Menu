@@ -28,7 +28,9 @@ public class LogAspect {
 	@Pointcut("execution(* com.example.demo.controller.testController.*(..))")
 	public void requestMapping() {
 	}
-	
+	@Pointcut("execution(* com.example.demo.handler.ApiExceptionHandler.*(..))")
+	public void exceptionMapping() {
+	}
 	/*
 	 * 在log方法執行之前先進入下面這個方法
 	 * 這裡也可以寫成
@@ -45,5 +47,12 @@ public class LogAspect {
 	public void afterRequestMapping(JoinPoint jp, Object result) throws JsonProcessingException, OPException {
 		log.info("result : {}", result);
 		System.out.println("AOP End");
+	}
+	@AfterReturning(
+			pointcut = "execution(* com.example.demo.handler.ApiExceptionHandler.*(..))",
+			returning = "result")
+	public void afterExceptionMapping(JoinPoint jp, Object result) throws JsonProcessingException, OPException {
+		log.info("result : {}", result);
+		System.out.println("afterExceptionMapping End");
 	}
 }

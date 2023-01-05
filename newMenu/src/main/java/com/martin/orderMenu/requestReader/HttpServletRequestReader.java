@@ -1,12 +1,14 @@
 package com.martin.orderMenu.requestReader;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-
+@Slf4j
 public class HttpServletRequestReader {
     // 字符串讀取
     // 方法一
@@ -15,7 +17,7 @@ public class HttpServletRequestReader {
         StringBuilder sb = new StringBuilder("");
         try {
             br = request.getReader();
-            System.out.println("inside RequestReqder br : " + br);
+            log.info("inside RequestReqder br : " + br);
             String str;
 
             while ((str = br.readLine()) != null) {

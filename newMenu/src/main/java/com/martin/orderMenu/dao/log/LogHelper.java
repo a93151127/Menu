@@ -63,7 +63,7 @@ public class LogHelper {
 
 		try {
 			Api_Data_Log apiDataLog = new Api_Data_Log();
-			
+			log.info("res in LogHelper : {}", res);
 			Calendar cal = Calendar.getInstance();
 			String partKey = String.valueOf(cal.get(Calendar.MONTH)+1);
 			apiDataLog.setLog_seqno(apiLog.getLog_seqno());
